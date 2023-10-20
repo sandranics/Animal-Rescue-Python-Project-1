@@ -1,0 +1,50 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
+%}
+<h1 align="center" style="font-family: Book Antiqua">PetMe</h1>
+<h5 align="center">Здравейте, {{ user.first_name }}!</h5>
+<h6 align="center">Благодарим, че се стремите към по-добро!</h6>
+<form method="POST" enctype="multipart/form-data">
+   <div class="form-group">
+    <input type="file" name="file">
+  </div>
+  <h5>Име</h5>
+  <input name="name" id="name" class="form-control mb-2"></input>
+  <h5>Порода</h5>
+  <input name="breed" id="breed" class="form-control"></input>
+  <h5>Възраст</h5>
+  <input name="age" id="age" class="form-control"></input>
+  <h5>Здравословно състояние</h5>
+  <input name="health_status" id="health_status" class="form-control"></input>
+  <h5>Локация</h5>
+  <input name="location" id="location" class="form-control"></input>
+  <br />
+  <div align="center">
+    <button type="submit" class="btn btn-primary">Добави обява</button>
+  </div>
+</form>
+
+<ul class="list-group list-group-flush" id="ads">
+  {% for ad in user.ads %} 
+  
+  <li class="list-group-item">
+     <button type="button" class="close" onClick="/( {{ ad.id }} )"><a href="/{{ ad.id }}">Снимка</a></button>
+    <h6>Име: {{ ad.name }}</h6>
+    <br/>
+    Порода: {{ ad.breed }}
+    <br/>
+    Възраст: {{ ad.age }}
+    <br/>
+    Здравословно състояние: {{ ad.health_status }}
+    <br/>
+    Локация: {{ ad.location }}
+    <br/>
+    Дата: {{ ad.date }}
+    <br/>
+    ID: {{ ad.id }}
+    <button type="button" class="close" onClick="deleteAd({{ ad.id }})">Осинови</button>
+    
+  </li>
+  {% endfor %}
+</ul>
+
+{% endblock %}
